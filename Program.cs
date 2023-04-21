@@ -1,5 +1,4 @@
-﻿
-class Program
+﻿class Program
 {
     static int[] array = Enumerable.Range(1, 100000).Select(i => new Random().Next(1, 21)).ToArray();  //масив array з 100000 елементів, який заповнюється випадковими числами від 1 до 20
     static int allSumArray = 0;  //суму всіх елементів array
@@ -31,6 +30,7 @@ class Program
             int endIndex = (i + 1) * (array.Length / 4);  // (і + 1) - наступний потік
             new Thread(() =>
             {
+                manualResEvent.WaitOne();
                 int sum = 0;
                 for (int k = startIndex; k < endIndex; k++)
                 {
